@@ -37,11 +37,14 @@ export class AuthController {
     }
     const hashed = await bcrypt.hash(body.password, 12);
 
-    return this.userService.save({
+    await this.userService.save({
       ...data,
       password: hashed,
       isAdmin: false,
     });
+    return {
+      message: 'success',
+    };
   }
 
   @Post('auth/login')

@@ -1,8 +1,8 @@
 import { Exclude } from 'class-transformer';
-import { Book } from 'src/book/book';
 import {
   Column, Entity, PrimaryGeneratedColumn, OneToMany,
 } from 'typeorm';
+import { Book } from '../book/book';
 
 @Entity('users')
 export class User {
