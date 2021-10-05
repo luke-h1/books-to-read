@@ -1,5 +1,8 @@
 import { Exclude } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Book } from 'src/book/book';
+import {
+  Column, Entity, PrimaryGeneratedColumn, OneToMany,
+} from 'typeorm';
 
 @Entity('users')
 export class User {
@@ -21,4 +24,7 @@ export class User {
 
   @Column({ default: false })
   isAdmin: boolean;
+
+  @OneToMany(() => Book, (book) => book.creator)
+  books: Book[];
 }

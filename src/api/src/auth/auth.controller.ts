@@ -28,7 +28,7 @@ export class AuthController {
     private jwtService: JwtService,
   ) {}
 
-  @Post('/users/register')
+  @Post('auth/register')
   async register(@Body() body: RegisterDto) {
     const { password_confirm, ...data } = body;
 
@@ -44,7 +44,7 @@ export class AuthController {
     });
   }
 
-  @Post('/users/login')
+  @Post('auth/login')
   async login(
     @Body('email') email: string,
     @Body('password') password: string,
@@ -67,7 +67,7 @@ export class AuthController {
   }
 
   @UseGuards(AuthGuard)
-  @Get('/users/me')
+  @Get('auth/me')
   async user(@Req() request: Request) {
     const cookie = request.cookies.jwt;
     const { id } = await this.jwtService.verifyAsync(cookie);
@@ -76,7 +76,7 @@ export class AuthController {
   }
 
   @UseGuards(AuthGuard)
-  @Post('/users/logout')
+  @Post('auth/logout')
   async logout(@Res({ passthrough: true }) response: Response) {
     response.clearCookie('jwt');
     return {
@@ -84,7 +84,7 @@ export class AuthController {
     };
   }
 
-  @Put('/users/me/info')
+  @Put('auth/me/info')
   @UseGuards(AuthGuard)
   async updateInfo(
     @Req() request: Request,
@@ -103,7 +103,7 @@ export class AuthController {
     return this.userService.findOne({ id });
   }
 
-  @Put('/users/me/password')
+  @Put('auth/me/password')
   @UseGuards(AuthGuard)
   async updatePassword(
     @Req() request: Request,
@@ -123,7 +123,7 @@ export class AuthController {
     return this.userService.findOne({ id });
   }
 
-  @Delete('/users/me')
+  @Delete('auth/me')
   @UseGuards(AuthGuard)
   async delete(@Req() request: Request) {
     const cookie = request.cookies.jwt;

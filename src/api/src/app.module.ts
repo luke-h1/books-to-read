@@ -12,6 +12,8 @@ import { BookController } from './book/book.controller';
 import { BookService } from './book/book.service';
 import { BookModule } from './book/book.module';
 import { isProd } from './shared/isProd';
+import { Book } from './book/book';
+import { User } from './user/user';
 
 @Module({
   imports: [
@@ -22,7 +24,7 @@ import { isProd } from './shared/isProd';
       username: 'root',
       password: 'root',
       database: 'books',
-      entities: [],
+      entities: [Book, User],
       autoLoadEntities: !isProd,
       synchronize: true,
     }),
@@ -30,7 +32,7 @@ import { isProd } from './shared/isProd';
     AuthModule,
     BookModule,
   ],
-  controllers: [AppController, UserController, AuthController, BookController],
-  providers: [AppService, UserService, AuthService, BookService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

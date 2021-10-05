@@ -10,32 +10,32 @@ import {
 import { BookService } from './book.service';
 import { BookCreateDto } from './dtos/BookCreateDto';
 
-@Controller('books')
+@Controller()
 export class BookController {
   constructor(private readonly bookService: BookService) {}
 
-  @Get('/books')
+  @Get('books')
   async all() {
     return this.bookService.find({});
   }
 
-  @Post('/books')
+  @Post('books')
   async create(@Body() body: BookCreateDto) {
     return this.bookService.save(body);
   }
 
-  @Get('/books/:id')
+  @Get('books/:id')
   async get(@Param('id') id: number) {
     return this.bookService.findOne({ id });
   }
 
-  @Put('/books/:id')
+  @Put('books/:id')
   async update(@Param('id') id: number, @Body() body: BookCreateDto) {
     await this.bookService.update(id, body);
     return this.bookService.findOne({ id });
   }
 
-  @Delete('/books/:id')
+  @Delete('books/:id')
   async delete(@Param('id') id: number) {
     await this.bookService.delete(id);
     return {
