@@ -3,7 +3,7 @@ services:
   backend:
     build: .
     ports: 
-      - 3005:3005
+      - 8000:5000
     volumes:
       - .:/app 
     depends_on:
