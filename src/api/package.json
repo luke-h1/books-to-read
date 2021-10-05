@@ -19,8 +19,9 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "seed:books": "",
-    "seed:users": ""
+    "seed:users": "ts-node src/seed/user.seeder.ts",
+    "seed:books": "ts-node src/seed/book.seeder.ts",
+    "enter:docker": "docker-compose exec backend sh"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
